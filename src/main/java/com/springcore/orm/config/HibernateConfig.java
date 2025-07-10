@@ -21,7 +21,7 @@ public class HibernateConfig {
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "true");
-		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		
 		return properties;
 	}
@@ -31,7 +31,7 @@ public class HibernateConfig {
 		DriverManagerDataSource datasource = new DriverManagerDataSource();
 		datasource.setUrl("jdbc:mysql://localhost:3306/springorm");
 		datasource.setUsername("root");
-		datasource.setPassword("root");
+		datasource.setPassword("root1234");
 		
 		return datasource;
 	}
@@ -40,7 +40,7 @@ public class HibernateConfig {
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setHibernateProperties(null);
+		sessionFactory.setHibernateProperties(getHibernateProperties());
 		sessionFactory.setPackagesToScan("com.springcore.orm.entities");
 		
 		return sessionFactory;
